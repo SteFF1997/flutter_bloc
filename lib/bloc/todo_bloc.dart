@@ -6,30 +6,45 @@ class TodoBloc {
       BehaviorSubject<List<Todo>>.seeded(
     [
       Todo(
-          title: 'Buy egs',
-          description: 'pls buy egs for lunch',
-          date: DateTime.now()),
+        title: 'Buy egs',
+        description: 'pls buy egs for lunch',
+        date: DateTime.now(),
+        id: 0,
+      ),
       Todo(
-          title: 'Fit after work',
-          description: 'goin to the fitnes',
-          date: DateTime.now()),
+        title: 'Fit after work',
+        description: 'goin to the fitnes',
+        date: DateTime.now(),
+        id: 1,
+      ),
       Todo(
-          title: 'Finish tasks',
-          description: 'review tasks in notion',
-          date: DateTime.now()),
+        title: 'Finish tasks',
+        description: 'review tasks in notion',
+        date: DateTime.now(),
+        id: 2,
+      ),
     ],
   );
 
-  addTodo(Todo newTodo) {
+  addTodo(
+    String title,
+    String description,
+    DateTime date,
+  ) {
+    int lastId = _todoList.value[_todoList.value.length - 1].id;
+    Todo newTodo = Todo(
+      title: title,
+      description: description,
+      date: date,
+      id: lastId + 1,
+    );
     _todoList.add([..._todoList.value, newTodo]);
-    print('here=> ${_todoList.value.toString()}');
   }
 
   removeTodo(int index) {
     List<Todo> newList = _todoList.value;
     newList.removeAt(index);
     _todoList.add(newList);
-    print('here=> ${_todoList.value}');
   }
 
   BehaviorSubject<List<Todo>> get todoList => _todoList;

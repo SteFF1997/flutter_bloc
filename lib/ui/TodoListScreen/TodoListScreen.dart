@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc_example/bloc/todo_bloc.dart';
 import 'package:flutter_bloc_example/model/todo.dart';
 import 'package:intl/intl.dart';
-
 import 'TodoListItem.dart';
 
 class TodoListScreen extends StatefulWidget {

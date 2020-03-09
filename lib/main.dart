@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc_example/bloc/connect_status_bloc.dart';
 import 'ui/TodoListScreen/TodoListScreen.dart';
 import 'ui/AddTodoScreen/AddTodoScreen.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  runApp(MyApp());
+  // init network status;
+  await networkStatusBloc.updateNetworkStatus();
+}
 
 class MyApp extends StatelessWidget {
   @override

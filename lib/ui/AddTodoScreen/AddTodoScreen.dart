@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_example/bloc/todo_bloc.dart';
-import 'package:flutter_bloc_example/model/todo.dart';
 import 'package:flutter_bloc_example/ui/AddTodoScreen/bloc.dart';
 import 'package:flutter_bloc_example/utils/InputsValidator.dart';
 
@@ -11,16 +10,13 @@ class AddTodoScreen extends StatelessWidget {
     void _addTodo(BuildContext context) {
       if (_formKey.currentState.validate()) {
         todoBloc.addTodo(
-          Todo(
-            title: addTodoScreenBloc.titleInputValue,
-            description: addTodoScreenBloc.descriptionInputValue,
-            date: DateTime.now(),
-          ),
+          addTodoScreenBloc.titleInputValue,
+          addTodoScreenBloc.descriptionInputValue,
+          DateTime.now(),
         );
         Navigator.pop(context);
       }
     }
-
     return Scaffold(
       appBar: AppBar(title: Text('Add todo')),
       body: SafeArea(
@@ -41,7 +37,7 @@ class AddTodoScreen extends StatelessWidget {
                       },
                     ),
                     TextFormField(
-                      validator: inputsValidator.validateEmail,
+                      validator: inputsValidator.validateLength,
                       decoration: InputDecoration(labelText: 'Description'),
                       onChanged: (text) {
                         addTodoScreenBloc.onChangeDescription(text);
