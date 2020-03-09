@@ -18,14 +18,15 @@ class _TodoListScreenState extends State<TodoListScreen> {
       body: SafeArea(
         child: Container(
           child: ListView.builder(
-            itemCount: todoBloc.list.length,
+            itemCount: todoBloc.todoList.value.length,
             itemBuilder: (context, index) {
-              Todo item = todoBloc.list[index];
+              Todo item = todoBloc.todoList.value[index];
               return TodoListItem(
-                  title: item.title,
-                  description: item.description,
-                  date: DateFormat.yMd().add_Hm().format(item.date),
-                  index: index);
+                title: item.title,
+                description: item.description,
+                date: DateFormat.yMd().add_Hm().format(item.date),
+                index: index,
+              );
             },
           ),
         ),
@@ -38,8 +39,6 @@ class _TodoListScreenState extends State<TodoListScreen> {
         },
       ),
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        notchMargin: 4.0,
         child: new Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
